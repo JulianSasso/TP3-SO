@@ -19,6 +19,8 @@ static void challenge10();
 static void challenge11();
 static void challenge12();
 
+static void gdbme() __attribute__((section(".RUN_ME")));
+
 
 void startChallenges(){
     loadChallenges();
@@ -66,7 +68,6 @@ void challenge(int index){
 int checkAnswer(int challengeNumber, char * answer){
     if (strcmp(correctAnswers[challengeNumber], answer) != 0){
         printf("\nRespuesta incorrecta: %s\n", answer);
-        printf("EXPECTED: %s\n", correctAnswers[challengeNumber]);
         return FAILED;
     }
 
@@ -97,7 +98,7 @@ static void challenge4(){
     printf(QUESTION_MSG);
     printf(QUESTION_4);
 
-    char * rta = "La respuesta es fk3wfLCm3QvS";
+    char * rta = "La respuesta es: fk3wfLCm3QvS";
     if(write(FD, rta, strlen(rta)) == -1){
         perror("Error in write fd 13");
         return;
@@ -118,12 +119,32 @@ static void challenge6(){
 
 static void challenge7(){
     printf(CHALLENGE_7);
+
+    srand((time(NULL)));
+
+    char * rta = "La respuesta es: K5n2UFfpFMUN";
+
+    char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/,.-+=~`<>:";
+
+    for(int i=0; i < strlen(rta); i++){
+        printf("%c", rta[i]);
+        for(int j=0; j < (rand() %(20 - 1 + 1)) + 1; j++){
+            char str[2] = {charset[rand() % (sizeof charset - 1)], 0};
+            write(2, str, 1);
+        }
+    }
+    printf("\n\n");
     printf(QUESTION_MSG);
     printf(QUESTION_7);
 }
 
 static void challenge8(){
     printf(CHALLENGE_8);
+
+    printf("\033[0;30m");
+    printf("La respuesta es: BUmyYq5XxXGt\n");
+    printf("\033[0m");
+
     printf(QUESTION_MSG);
     printf(QUESTION_8);
 }
@@ -171,10 +192,16 @@ static void challenge11(){
     printf(CHALLENGE_11);
     printf(QUESTION_MSG);
     printf(QUESTION_11);
+    gdbme();
 }
 
 static void challenge12(){
     printf(CHALLENGE_12);
     printf(QUESTION_MSG);
     printf(QUESTION_12);
+}
+
+static void gdbme(){
+    if((long)getpid() == 0x12345678)
+        printf("La respuesta es: gdb_rules\n");
 }

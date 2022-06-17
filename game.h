@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <time.h>
 
 #define CHALLENGE_COUNT 12
 #define BUFFER_SIZE 1024
@@ -31,12 +32,12 @@
 #define QUESTION_11  "¿Qué es un RFC?\n"
 #define QUESTION_12  "¿Fue divertido?\n"
 
-#define CHALLENGE_1  "Bienvenidos al TP3 y felicitaciones, ya resolvieron el primer acertijo.\n\nEn este TP deberán finalizar el juego que ya comenzaron resolviendo los desafíos de cada nivel.\nAdemás tendrán que investigar otras preguntas para responder durante la defensa.\nEl desafío final consiste en crear un programa que se comporte igual que yo, es decir, que provea los mismos desafíos y que sea necesario hacer lo mismo para resolverlos. No basta con esperar la respuesta.\nAdemás, deberán implementar otro programa para comunicarse conmigo.\n\nDeberán estar atentos a los easter eggs.\n\nPara verificar que sus respuestas tienen el formato correcto respondan a este desafío con la palabra 'entendido'\n\n"
+#define CHALLENGE_1  "Bienvenidos al TP3 y felicitaciones, ya resolvieron el primer acertijo.\n\nEn este TP deberán finalizar el juego que ya comenzaron resolviendo los desafíos de cada nivel.\nAdemás tendrán que investigar otras preguntas para responder durante la defensa.\nEl desafío final consiste en crear un programa que se comporte igual que yo, es decir, que provea los mismos desafíos y que sea necesario hacer lo mismo para resolverlos. No basta con esperar la respuesta.\nAdemás, deberán implementar otro programa para comunicarse conmigo.\n\nDeberán estar atentos a los easter eggs.\n\nPara verificar que sus respuestas tienen el formato correcto respondan a este desafío con la palabra 'entendido\\n'\n\n"
 #define CHALLENGE_2  "The Wire S1E5\n5295 888 6288\n\n"
 #define CHALLENGE_3  "https://ibb.co/tc0Hb6w\n\n"
 #define CHALLENGE_4  "EBADF...\n\nwrite: Bad file descriptor\n\n"
 #define CHALLENGE_5  "respuesta = strings:201\n\n"
-#define CHALLENGE_6  ".data .bss .comment ? .shstrtab .symtab .strtab\n\n"
+#define CHALLENGE_6  ".init .text ? .fini .rodata\n\n"
 #define CHALLENGE_7  "Filter error\n\n"
 #define CHALLENGE_8  "¿?\n\n"
 #define CHALLENGE_9  "Latexme\n\nSi\n\\mathrm{d}y = u^v{\\cdot}(v'{\\cdot}\\ln{(u)}+v{\\cdot}\\frac{u'}{u})\nentonces\ny =\n\n"
