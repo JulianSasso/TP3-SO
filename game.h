@@ -7,6 +7,8 @@
 
 #define CHALLENGE_COUNT 12
 #define BUFFER_SIZE 1024
+#define FAILED 0
+#define SUCCESS 1
 
 #define CHALLENGE_MSG "------------- DESAFIO -------------\n"
 #define QUESTION_MSG "----- PREGUNTA PARA INVESTIGAR -----\n"
@@ -52,8 +54,8 @@
 
 #define END_MSG "Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n"
 
-void loadChallenges();
-
-int challenge(int index);
+void startChallenges();
+void challenge(int index);
+int checkAnswer(int challengeNumber, char * answer);
 
 #endif

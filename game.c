@@ -1,8 +1,11 @@
 #include "game.h"
 
-int (*challenges[MAX])(void);
+int (*challenges[CHALLENGE_COUNT])(void);
+char * correctAnswers[CHALLENGE_COUNT];
 char * buffer[BUFFER_SIZE];
 
+static void loadChallenges();
+static void loadCorrectAnswers();
 static int challenge1();
 static int challenge2();
 static int challenge3();
@@ -16,10 +19,13 @@ static int challenge10();
 static int challenge11();
 static int challenge12();
 
-static int checkAnswer(char * correctAnswer, char * answer);
 
+void startChallenges(){
+    loadChallenges();
+    loadCorrectAnswers();
+}
 
-void loadChallenges(){
+static void loadChallenges(){
     challenges[0] = &challenge1;
     challenges[1] = &challenge2;
     challenges[2] = &challenge3;
@@ -34,18 +40,38 @@ void loadChallenges(){
     challenges[11] = &challenge12;
 }
 
-int challenge(int index){
-    system("clear");
-    printf(CHALLENGE_MSG);
-    return challenges[index]();
+static void loadCorrectAnswers(){
+    correctAnswers[0] = ANSWER_1;
+    correctAnswers[1] = ANSWER_2;
+    correctAnswers[2] = ANSWER_3;
+    correctAnswers[3] = ANSWER_4;
+    correctAnswers[4] = ANSWER_5;
+    correctAnswers[5] = ANSWER_6;
+    correctAnswers[6] = ANSWER_7;
+    correctAnswers[7] = ANSWER_8;
+    correctAnswers[8] = ANSWER_9;
+    correctAnswers[9] = ANSWER_10;
+    correctAnswers[10] = ANSWER_11;
+    correctAnswers[11] = ANSWER_12;
 }
 
-static int checkAnswer(char * correctAnswer, char * answer){
-    if (strcmp(correctAnswer, answer) != 0){
+
+
+void challenge(int index){
+    system("clear");
+    printf(CHALLENGE_MSG);
+    challenges[index]();
+}
+
+int checkAnswer(int challengeNumber, char * answer){
+    if (strcmp(correctAnswers[challengeNumber], answer) != 0){
         printf("\nRespuesta incorrecta: %s\n", answer);
-        return 0;
+        printf("EXPECTED: %s\n", correctAnswers[challengeNumber]);
+        return FAILED;
     }
-    return 1;
+
+
+    return SUCCESS;
 }
 
 static int challenge1(){

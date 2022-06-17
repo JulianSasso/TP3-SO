@@ -10,74 +10,75 @@
 #include "game.h"
 
 #define PORT 8080
+#define IP "0.0.0.0"
+#define MAX_INPUT 50
+
+static int getUserInput(int fd, char * buffer);
 
 int main(int argc, char const* argv[]) {
 
-    int server_fd, new_socket;
+    int serverFd, clientFd;
     struct sockaddr_in address;
-    int opt = 1;
     int addrlen = sizeof(address);
+    int opt = 1;
  
     // Creamos el fd del socket
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
+    if ((serverFd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
         perror("socket failed");
-        exit(EXIT_FAILURE);
+        return -1;
     }
-
-    /* int saved_flags = fcntl(server_fd, F_GETFL);
-    fcntl(server_fd, F_SETFL, saved_flags & ~O_NONBLOCK); */
  
     // Conectamos el socket al puerto 8080
-    if (setsockopt(server_fd, SOL_SOCKET, /* SO_REUSEADDR | */ SO_REUSEPORT, &opt, sizeof(opt)) == -1) {
+    if (setsockopt(serverFd, SOL_SOCKET, SO_REUSEPORT, &opt, sizeof(opt)) == -1) {
         perror("setsockopt");
-        exit(EXIT_FAILURE);
+        return -1;
     }
+
     address.sin_family = AF_INET;
-    //address.sin_addr.s_addr = INADDR_ANY;
-    //address.sin_addr.s_addr = inet_addr("0.0.0.0");
-    inet_pton(AF_INET, "0.0.0.0", &address.sin_addr);
     address.sin_port = htons(PORT);
+    inet_pton(AF_INET, IP, &address.sin_addr);
  
-    if (bind(server_fd, (struct sockaddr *) &address, sizeof(address)) < 0) {
+    if (bind(serverFd, (struct sockaddr *) &address, addrlen) < 0) {
         perror("bind failed");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
-    // en que puerto escuchamos del cliente???
-    if (listen(server_fd, 1) < 0) {
+    if (listen(serverFd, 1) < 0) {
         perror("listen");
-        exit(EXIT_FAILURE);
+        return -1;
     }
-    if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) < 0) {
+    if ((clientFd = accept(serverFd, (struct sockaddr *)&address, (socklen_t *)&addrlen)) < 0) {
         perror("accept");
-        exit(EXIT_FAILURE);
+        return -1;
     }
 
-    char buffer[50];
-    while(1){printf("Leyendo...\n");
-        if(read(new_socket, buffer, 50) < 0)
-            return;
-        printf("LEI: %s\n", buffer);
+    startChallenges();
+    for (int i = 0; i < CHALLENGE_COUNT; i++){
+        challenge(i);
+        int result = FAILED;
+        char buffer[MAX_INPUT];
+        while (result == FAILED){
+            if(getUserInput(clientFd, buffer) < 0)
+                return 0;
+            result = checkAnswer(i, buffer);
+        }
     }
 
-    // juego
-    loadChallenges();
-    int currentChallenge = 0;
+    // closing the connected socket
+    close(clientFd);
+    //close(serverFd);
 
-    while(currentChallenge < CHALLENGE_COUNT){
-
-        if(challenge(currentChallenge) > 0)
-            currentChallenge++;
-
-    }
-   
-
-  // closing the connected socket
-    // close(new_socket);
-    close(server_fd);
-
-  // closing the listening socket
-    // shutdown(server_fd, SHUT_RDWR);
+    // closing the listening socket
+    shutdown(serverFd, SHUT_RDWR);
     
     return 0;
+}
+
+static int getUserInput(int fd, char * buffer){
+    int r = read(fd, buffer, MAX_INPUT);
+    if(r <= 0)
+        return -1;
+
+    buffer[r] = 0;
+    return 1;
 }

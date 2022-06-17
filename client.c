@@ -52,6 +52,6 @@ static void readInput(char * buffer){
     while (((c = getchar()) != '\n') && read < MAX_INPUT){
         buffer[read++] = c;
     }
-    buffer[read++] = '\n';
+    //buffer[read++] = '\n';
     buffer[read] = 0;
 }
