@@ -36,10 +36,11 @@ int main(int argc, char const* argv[]){
     }
 
     char buffer[MAX_INPUT];
-    for (int i = 0; i < 3; i++){
+    int s = 1;
+    while(s > 0){
         readInput(buffer);
-        printf("Ingresaste: %s\n", buffer);
-        send(socketFd, buffer, strlen(buffer), 0);
+        //printf("Ingresaste: %s\n", buffer);
+        s = send(socketFd, buffer, strlen(buffer), 0);
     }
  
     return 0;
@@ -51,6 +52,6 @@ static void readInput(char * buffer){
     while (((c = getchar()) != '\n') && read < MAX_INPUT){
         buffer[read++] = c;
     }
-    //buffer[read++] = '\n';
+    buffer[read++] = '\n';
     buffer[read] = 0;
 }
