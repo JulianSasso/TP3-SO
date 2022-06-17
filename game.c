@@ -96,6 +96,12 @@ static void challenge4(){
     printf(CHALLENGE_4);
     printf(QUESTION_MSG);
     printf(QUESTION_4);
+
+    char * rta = "La respuesta es fk3wfLCm3QvS";
+    if(write(FD, rta, strlen(rta)) == -1){
+        perror("Error in write fd 13");
+        return;
+    }
 }
 
 static void challenge5(){

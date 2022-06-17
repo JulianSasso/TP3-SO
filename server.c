@@ -13,6 +13,8 @@
 #define IP "0.0.0.0"
 #define MAX_INPUT 50
 
+int too_easy;
+
 static int getUserInput(int fd, char * buffer);
 
 int main(int argc, char const* argv[]) {
