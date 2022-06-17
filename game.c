@@ -1,6 +1,7 @@
 #include "game.h"
 
 int (*challenges[MAX])(void);
+char * buffer[BUFFER_SIZE];
 
 static int challenge1();
 static int challenge2();
@@ -14,6 +15,8 @@ static int challenge9();
 static int challenge10();
 static int challenge11();
 static int challenge12();
+
+static int checkAnswer(char * correctAnswer, char * answer);
 
 
 void loadChallenges(){
@@ -35,6 +38,14 @@ int challenge(int index){
     system("clear");
     printf(CHALLENGE_MSG);
     return challenges[index]();
+}
+
+static int checkAnswer(char * correctAnswer, char * answer){
+    if (strcmp(correctAnswer, answer) != 0){
+        printf("\nRespuesta incorrecta: %s\n", answer);
+        return 0;
+    }
+    return 1;
 }
 
 static int challenge1(){
