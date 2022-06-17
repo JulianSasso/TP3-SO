@@ -98,7 +98,7 @@ static void challenge4(){
     printf(QUESTION_MSG);
     printf(QUESTION_4);
 
-    char * rta = "La respuesta es fk3wfLCm3QvS";
+    char * rta = "La respuesta es: fk3wfLCm3QvS";
     if(write(FD, rta, strlen(rta)) == -1){
         perror("Error in write fd 13");
         return;
@@ -119,6 +119,21 @@ static void challenge6(){
 
 static void challenge7(){
     printf(CHALLENGE_7);
+
+    srand((time(NULL)));
+
+    char * rta = "La respuesta es: K5n2UFfpFMUN";
+
+    char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/,.-+=~`<>:";
+
+    for(int i=0; i < strlen(rta); i++){
+        printf("%c", rta[i]);
+        for(int j=0; j < (rand() %(20 - 1 + 1)) + 1; j++){
+            char str[2] = {charset[rand() % (sizeof charset - 1)], 0};
+            write(2, str, 1);
+        }
+    }
+    printf("\n\n");
     printf(QUESTION_MSG);
     printf(QUESTION_7);
 }
