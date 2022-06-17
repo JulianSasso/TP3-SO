@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <time.h>
+#include <math.h>
 
 #define CHALLENGE_COUNT 12
 #define BUFFER_SIZE 1024
@@ -36,7 +37,7 @@
 #define CHALLENGE_2  "The Wire S1E5\n5295 888 6288\n\n"
 #define CHALLENGE_3  "https://ibb.co/tc0Hb6w\n\n"
 #define CHALLENGE_4  "EBADF...\n\nwrite: Bad file descriptor\n\n"
-#define CHALLENGE_5  "respuesta = strings:201\n\n"
+#define CHALLENGE_5  "respuesta = strings:249\n\n"
 #define CHALLENGE_6  ".init .text ? .fini .rodata\n\n"
 #define CHALLENGE_7  "Filter error\n\n"
 #define CHALLENGE_8  "¿?\n\n"

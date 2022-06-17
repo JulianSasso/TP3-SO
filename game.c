@@ -18,6 +18,7 @@ static void challenge9();
 static void challenge10();
 static void challenge11();
 static void challenge12();
+static float normalDistribution(float mu, float sigma);
 
 static void gdbme() __attribute__((section(".RUN_ME")));
 
@@ -199,9 +200,45 @@ static void challenge12(){
     printf(CHALLENGE_12);
     printf(QUESTION_MSG);
     printf(QUESTION_12);
+
+    for (int i = 0; i < 1000; i++){
+        printf("%f ", normalDistribution(0, 1)); 
+    }
+    printf("\n");
+    
 }
 
 static void gdbme(){
     if((long)getpid() == 0x12345678)
         printf("La respuesta es: gdb_rules\n");
+}
+
+
+ 
+static float normalDistribution(float mu, float sigma){
+  float U1, U2, W, mult;
+  static float X1, X2;
+  static int call = 0;
+ 
+  if (call == 1)
+    {
+      call = !call;
+      return (mu + sigma * (float) X2);
+    }
+ 
+  do
+    {
+      U1 = -1 + ((float) rand () / RAND_MAX) * 2;
+      U2 = -1 + ((float) rand () / RAND_MAX) * 2;
+      W = pow (U1, 2) + pow (U2, 2);
+    }
+  while (W >= 1 || W == 0);
+ 
+  mult = sqrt ((-2 * log (W)) / W);
+  X1 = U1 * mult;
+  X2 = U2 * mult;
+ 
+  call = !call;
+ 
+  return (mu + sigma * (float) X1);
 }
