@@ -64,6 +64,8 @@ int main(int argc, char const* argv[]) {
         }
     }
 
+    printf(END_MSG);
+
     // closing the connected socket
     close(clientFd);
     //close(serverFd);

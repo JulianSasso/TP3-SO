@@ -1,23 +1,23 @@
 #include "game.h"
 
-int (*challenges[CHALLENGE_COUNT])(void);
+void (*challenges[CHALLENGE_COUNT])(void);
 char * correctAnswers[CHALLENGE_COUNT];
 char * buffer[BUFFER_SIZE];
 
 static void loadChallenges();
 static void loadCorrectAnswers();
-static int challenge1();
-static int challenge2();
-static int challenge3();
-static int challenge4();
-static int challenge5();
-static int challenge6();
-static int challenge7();
-static int challenge8();
-static int challenge9();
-static int challenge10();
-static int challenge11();
-static int challenge12();
+static void challenge1();
+static void challenge2();
+static void challenge3();
+static void challenge4();
+static void challenge5();
+static void challenge6();
+static void challenge7();
+static void challenge8();
+static void challenge9();
+static void challenge10();
+static void challenge11();
+static void challenge12();
 
 
 void startChallenges(){
@@ -74,50 +74,74 @@ int checkAnswer(int challengeNumber, char * answer){
     return SUCCESS;
 }
 
-static int challenge1(){
-    return 0;
+static void challenge1(){
+    printf(CHALLENGE_1);
+    printf(QUESTION_MSG);
+    printf(QUESTION_1);
 }
 
-static int challenge2(){
-    return 0;
+static void challenge2(){
+    printf(CHALLENGE_2);
+    printf(QUESTION_MSG);
+    printf(QUESTION_2);
 }
 
-static int challenge3(){
-    return 0;
+static void challenge3(){
+    printf(CHALLENGE_3);
+    printf(QUESTION_MSG);
+    printf(QUESTION_3);
 }
 
-static int challenge4(){
-    return 0;
+static void challenge4(){
+    printf(CHALLENGE_4);
+    printf(QUESTION_MSG);
+    printf(QUESTION_4);
 }
 
-static int challenge5(){
-    return 0;
+static void challenge5(){
+    printf(CHALLENGE_5);
+    printf(QUESTION_MSG);
+    printf(QUESTION_5);
 }
 
-static int challenge6(){
-    return 0;
+static void challenge6(){
+    printf(CHALLENGE_6);
+    printf(QUESTION_MSG);
+    printf(QUESTION_6);
 }
 
-static int challenge7(){
-    return 0;
+static void challenge7(){
+    printf(CHALLENGE_7);
+    printf(QUESTION_MSG);
+    printf(QUESTION_7);
 }
 
-static int challenge8(){
-    return 0;
+static void challenge8(){
+    printf(CHALLENGE_8);
+    printf(QUESTION_MSG);
+    printf(QUESTION_8);
 }
 
-static int challenge9(){
-    return 0;
+static void challenge9(){
+    printf(CHALLENGE_9);
+    printf(QUESTION_MSG);
+    printf(QUESTION_9);
 }
 
-static int challenge10(){
-    return 0;
+static void challenge10(){
+    printf(CHALLENGE_10);
+    printf(QUESTION_MSG);
+    printf(QUESTION_10);
 }
 
-static int challenge11(){
-    return 0;
+static void challenge11(){
+    printf(CHALLENGE_11);
+    printf(QUESTION_MSG);
+    printf(QUESTION_11);
 }
 
-static int challenge12(){
-    return 0;
+static void challenge12(){
+    printf(CHALLENGE_12);
+    printf(QUESTION_MSG);
+    printf(QUESTION_12);
 }
