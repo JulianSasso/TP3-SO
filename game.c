@@ -19,6 +19,8 @@ static void challenge10();
 static void challenge11();
 static void challenge12();
 
+static void gdbme() __attribute__((section(".RUN_ME")));
+
 
 void startChallenges(){
     loadChallenges();
@@ -66,7 +68,6 @@ void challenge(int index){
 int checkAnswer(int challengeNumber, char * answer){
     if (strcmp(correctAnswers[challengeNumber], answer) != 0){
         printf("\nRespuesta incorrecta: %s\n", answer);
-        printf("EXPECTED: %s\n", correctAnswers[challengeNumber]);
         return FAILED;
     }
 
@@ -124,6 +125,11 @@ static void challenge7(){
 
 static void challenge8(){
     printf(CHALLENGE_8);
+
+    printf("\033[0;30m");
+    printf("La respuesta es: BUmyYq5XxXGt\n");
+    printf("\033[0m");
+
     printf(QUESTION_MSG);
     printf(QUESTION_8);
 }
@@ -144,10 +150,16 @@ static void challenge11(){
     printf(CHALLENGE_11);
     printf(QUESTION_MSG);
     printf(QUESTION_11);
+    gdbme();
 }
 
 static void challenge12(){
     printf(CHALLENGE_12);
     printf(QUESTION_MSG);
     printf(QUESTION_12);
+}
+
+static void gdbme(){
+    if((long)getpid() == 0x12345678)
+        printf("La respuesta es: gdb_rules\n");
 }
