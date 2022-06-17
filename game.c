@@ -138,6 +138,33 @@ static void challenge10(){
     printf(CHALLENGE_10);
     printf(QUESTION_MSG);
     printf(QUESTION_10);
+
+    char c;
+    do {
+        system("gcc quine.c -o quine -Wall -pedantic -std=c99");
+        system("./quine > quine.txt");
+
+        int fdSource = open("quine.c", O_RDONLY);
+        char bufferSource[1024];
+        int r = read(fdSource, bufferSource, 1024);
+        bufferSource[r] = 0;
+
+        int fdOutput = open("quine.txt", O_RDWR);
+        char bufferOutput[1024];
+        r = read(fdOutput, bufferOutput, 1024);
+        // El archivo se escribe con \n al final
+        bufferOutput[r-1] = 0;
+
+        int result = strcmp(bufferSource, bufferOutput);
+        system("rm quine quine.txt");
+
+        if(result == 0){
+            printf("\nLa respuesta es: chin_chu_lan_cha\n");
+            break;
+        }
+
+        printf("Presiona ENTER para reintentar\n");        
+    } while((c = getchar()) == '\n');    
 }
 
 static void challenge11(){
