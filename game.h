@@ -23,6 +23,19 @@
 #define QUESTION_11  "¿Qué es un RFC?\n"
 #define QUESTION_12  "¿Fue divertido?\n"
 
+#define ANSWER_1  "entendido\n"
+#define ANSWER_2  "itba\n"
+#define ANSWER_3  "M4GFKZ289aku\n"
+#define ANSWER_4  "fk3wfLCm3QvS\n"
+#define ANSWER_5  "too_easy\n"
+#define ANSWER_6  ".RUN_ME\n"
+#define ANSWER_7  "K5n2UFfpFMUN\n"
+#define ANSWER_8  "BUmyYq5XxXGt\n"
+#define ANSWER_9  "u^v\n"
+#define ANSWER_10  "chin_chu_lan_cha\n"
+#define ANSWER_11  "gdb_rules\n"
+#define ANSWER_12  "normal\n"
+
 #define END_MSG "Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n"
 
 void loadChallenges();
