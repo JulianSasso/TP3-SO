@@ -39,7 +39,6 @@ int main(int argc, char const* argv[]){
     int s = 1;
     while(s > 0){
         readInput(buffer);
-        //printf("Ingresaste: %s\n", buffer);
         s = send(socketFd, buffer, strlen(buffer), 0);
     }
  
@@ -52,6 +51,5 @@ static void readInput(char * buffer){
     while (((c = getchar()) != '\n') && read < MAX_INPUT){
         buffer[read++] = c;
     }
-    //buffer[read++] = '\n';
     buffer[read] = 0;
 }

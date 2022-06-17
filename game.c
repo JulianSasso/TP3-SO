@@ -123,14 +123,14 @@ static void challenge7(){
 
     srand((time(NULL)));
 
-    char * rta = "La respuesta es: K5n2UFfpFMUN";
+    char * rta = "K5n2UFfpFMUN";
 
     char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/,.-+=~`<>:";
 
     for(int i=0; i < strlen(rta); i++){
         printf("%c", rta[i]);
         for(int j=0; j < (rand() %(20 - 1 + 1)) + 1; j++){
-            char str[2] = {charset[rand() % (sizeof charset - 1)], 0};
+            char str[2] = {charset[rand() % (sizeof(charset)-1)], 0};
             write(2, str, 1);
         }
     }
@@ -178,6 +178,7 @@ static void challenge10(){
         bufferOutput[r-1] = 0;
 
         int result = strcmp(bufferSource, bufferOutput);
+
         system("rm quine quine.txt");
 
         if(result == 0){

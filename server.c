@@ -55,7 +55,7 @@ int main(int argc, char const* argv[]) {
     }
 
     startChallenges();
-    for (int i = 0; i < CHALLENGE_COUNT; i++){
+    for (int i = 9; i < CHALLENGE_COUNT; i++){
         challenge(i);
         int result = FAILED;
         char buffer[MAX_INPUT];
@@ -68,11 +68,9 @@ int main(int argc, char const* argv[]) {
 
     printf(END_MSG);
 
-    // closing the connected socket
-    close(clientFd);
     //close(serverFd);
+    close(clientFd);
 
-    // closing the listening socket
     shutdown(serverFd, SHUT_RDWR);
     
     return 0;
