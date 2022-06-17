@@ -4,6 +4,9 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+
+#include "game.h"
+
 #define PORT 8080
 
 int main(int argc, char const* argv[]) {
@@ -43,6 +46,15 @@ int main(int argc, char const* argv[]) {
     }
 
     // juego
+    loadChallenges();
+    int i=0;
+    
+    while(i < MAX){
+
+        if(challenge(i) > 0)
+            i++;
+
+    }
    
 
   // closing the connected socket
