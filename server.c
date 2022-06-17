@@ -4,6 +4,8 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <fcntl.h>
+#include <arpa/inet.h>
 
 #include "game.h"
 
@@ -21,20 +23,26 @@ int main(int argc, char const* argv[]) {
         perror("socket failed");
         exit(EXIT_FAILURE);
     }
+
+    /* int saved_flags = fcntl(server_fd, F_GETFL);
+    fcntl(server_fd, F_SETFL, saved_flags & ~O_NONBLOCK); */
  
     // Conectamos el socket al puerto 8080
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) == -1) {
+    if (setsockopt(server_fd, SOL_SOCKET, /* SO_REUSEADDR | */ SO_REUSEPORT, &opt, sizeof(opt)) == -1) {
         perror("setsockopt");
         exit(EXIT_FAILURE);
     }
     address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY;
+    //address.sin_addr.s_addr = INADDR_ANY;
+    //address.sin_addr.s_addr = inet_addr("0.0.0.0");
+    inet_pton(AF_INET, "0.0.0.0", &address.sin_addr);
     address.sin_port = htons(PORT);
  
     if (bind(server_fd, (struct sockaddr *) &address, sizeof(address)) < 0) {
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
+
     // en que puerto escuchamos del cliente???
     if (listen(server_fd, 1) < 0) {
         perror("listen");
@@ -45,14 +53,21 @@ int main(int argc, char const* argv[]) {
         exit(EXIT_FAILURE);
     }
 
+    char buffer[50];
+    while(1){printf("Leyendo...\n");
+        if(read(new_socket, buffer, 50) < 0)
+            return;
+        printf("LEI: %s\n", buffer);
+    }
+
     // juego
     loadChallenges();
-    int i=0;
-    
-    while(i < MAX){
+    int currentChallenge = 0;
 
-        if(challenge(i) > 0)
-            i++;
+    while(currentChallenge < CHALLENGE_COUNT){
+
+        if(challenge(currentChallenge) > 0)
+            currentChallenge++;
 
     }
    
