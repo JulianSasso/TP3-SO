@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define CHALLENGE_COUNT 12
 #define BUFFER_SIZE 1024
@@ -22,6 +23,32 @@
 #define QUESTION_10  "¿Cuáles son las características del protocolo SCTP?\n"
 #define QUESTION_11  "¿Qué es un RFC?\n"
 #define QUESTION_12  "¿Fue divertido?\n"
+
+#define CHALLENGE_1  "Bienvenidos al TP3 y felicitaciones, ya resolvieron el primer acertijo.\n\nEn este TP deberán finalizar el juego que ya comenzaron resolviendo los desafíos de cada nivel.\nAdemás tendrán que investigar otras preguntas para responder durante la defensa.\nEl desafío final consiste en crear un programa que se comporte igual que yo, es decir, que provea los mismos desafíos y que sea necesario hacer lo mismo para resolverlos. No basta con esperar la respuesta.\nAdemás, deberán implementar otro programa para comunicarse conmigo.\n\nDeberán estar atentos a los easter eggs.\n\nPara verificar que sus respuestas tienen el formato correcto respondan a este desafío con la palabra 'entendido'\n"
+#define CHALLENGE_2  "The Wire S1E5\n5295 888 6288\n"
+#define CHALLENGE_3  "https://ibb.co/tc0Hb6w\n"
+#define CHALLENGE_4  "EBADF...\n\nwrite: Bad file descriptor\n"
+#define CHALLENGE_5  "respuesta = strings:277\n"
+#define CHALLENGE_6  ".data .bss .comment ? .shstrtab .symtab .strtab\n"
+#define CHALLENGE_7  "Filter error\n"
+#define CHALLENGE_8  "¿?\n"
+#define CHALLENGE_9  "Latexme\n\nSi\n\mathrm{d}y = u^v{\cdot}(v'{\cdot}\ln{(u)}+v{\cdot}\frac{u'}{u})\nentonces\ny =\n"
+#define CHALLENGE_10  "quine\n"
+#define CHALLENGE_11  "b gdbme y encontrá el valor mágico\n"
+#define CHALLENGE_12  "Me conoces\n"
+
+#define ANSWER_1  "entendido"
+#define ANSWER_2  "itba"
+#define ANSWER_3  "M4GFKZ289aku"
+#define ANSWER_4  "fk3wfLCm3QvS"
+#define ANSWER_5  "too_easy"
+#define ANSWER_6  ".RUN_ME"
+#define ANSWER_7  "K5n2UFfpFMUN"
+#define ANSWER_8  "BUmyYq5XxXGt"
+#define ANSWER_9  "u^v"
+#define ANSWER_10  "chin_chu_lan_cha"
+#define ANSWER_11  "gdb_rules"
+#define ANSWER_12  "normal"
 
 #define END_MSG "Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n"
 
