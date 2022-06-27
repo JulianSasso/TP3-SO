@@ -55,7 +55,7 @@ int main(int argc, char const* argv[]) {
     }
 
     startChallenges();
-    for (int i = 9; i < CHALLENGE_COUNT; i++){
+    for (int i = 0; i < CHALLENGE_COUNT; i++){
         challenge(i);
         int result = FAILED;
         char buffer[MAX_INPUT];
